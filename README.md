@@ -6,17 +6,13 @@ PdfToXls é uma ferramenta em .NET que converte arquivos PDF em planilhas XLSX.
 
 **Funcionalidades:**
 
-Conversão precisa de dados tabulares de PDF para XLSX.
-Suporte para formatação básica de texto (negrito, itálico, etc.).
-Detecção automática de colunas e linhas.
-Preservação da estrutura do layout original do PDF.
-Opções para personalizar a conversão.
+Inicialmente o projeto tem o obsetivo auxiliar trabalhadores na conferencia dos extratos gerados pelo APP do INSS
+A Aplicação efetua a leitura do arquivo PDF e gera um XLSX.
 
 
 **Benefícios:**
 
-Simplifica a extração de dados de PDFs.
-Permite a análise e manipulação de dados em planilhas.
+Simplifica a conferencia de depósitos do INSS.
 Economiza tempo e esforço manual.
 
 
@@ -25,15 +21,14 @@ Economiza tempo e esforço manual.
 Instale o .NET 8.
 Baixe e compile o código-fonte C#.
 Execute o aplicativo e selecione o arquivo PDF a ser convertido.
-Especifique as opções de conversão desejadas.
-Clique em "Converter" para gerar o arquivo XLSX.
 
 
 **Links Úteis:**
 
-Código-fonte: https://docs.github.com/es/repositories/creating-and-managing-repositories/quickstart-for-repositories
-Documentação: https://blog.runrun.it/8-documentos-essenciais-para-o-controle-de-projetos/
-Observações:
+Lib de conversão PDF to TXT: https://github.com/UglyToad/PdfPig
+Lib para geração de XLSX: https://www.nuget.org/packages/NPOI
+
+**Observações:**
 
 Este projeto está em desenvolvimento ativo.
 Novas funcionalidades e melhorias serão adicionadas futuramente.
