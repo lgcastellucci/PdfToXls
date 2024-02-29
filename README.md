@@ -6,13 +6,13 @@ PdfToXls é uma ferramenta em .NET que converte arquivos PDF em planilhas XLSX.
 
 **Funcionalidades:**
 
-Inicialmente o projeto tem o obsetivo auxiliar trabalhadores na conferencia dos extratos gerados pelo APP do INSS
+Inicialmente o projeto tem o obsetivo auxiliar trabalhadores na conferencia dos extratos gerados pelo APP do FGTS
 A Aplicação efetua a leitura do arquivo PDF e gera um XLSX.
 
 
 **Benefícios:**
 
-Simplifica a conferencia de depósitos do INSS.
+Simplifica a conferencia de depósitos do FGTS.
 Economiza tempo e esforço manual.
 
 
