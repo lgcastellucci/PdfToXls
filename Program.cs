@@ -25,7 +25,7 @@ namespace PdfToXls
             do
             {
                 Console.Write(LineAsterisk());
-                Console.WriteLine("Files PDF in the same directory");
+                Console.WriteLine("Arquivos PDFs que estão no mesmo diretório da aplicação");
                 Console.Write(LineAsterisk());
 
                 var directoryInfo = new DirectoryInfo(baseDirectory);
@@ -43,7 +43,8 @@ namespace PdfToXls
                     foreach (var item in listFiles)
                         Console.WriteLine($"{item.Key} - {item.Value}");
                 }
-                Console.Write("Enter a number of your file (enter 'q' to exit):");
+                Console.Write(LineAsterisk());
+                Console.Write("Entre com o numero do arquivo para inciciar o processamento (ou 'q' para sair):");
 
                 var val = Console.ReadLine();
                 if (!int.TryParse(val, out var opt))
@@ -51,7 +52,7 @@ namespace PdfToXls
                     if (string.Equals(val, "q", StringComparison.OrdinalIgnoreCase))
                         return;
 
-                    Console.WriteLine($"No option with value: {val}.");
+                    Console.WriteLine($"Nenhuma opção encontrada para esse valor: {val}.");
                     continue;
                 }
 
