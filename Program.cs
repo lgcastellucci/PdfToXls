@@ -119,9 +119,6 @@ namespace PdfToXls
                 if (informationLines.Count > 0)
                     fileCreated = createXlsxFile(informationLines);
 
-                if (informationLines.Count > 0)
-                    Console.WriteLine(paymentAnalisis(informationLines));
-
                 if (!string.IsNullOrWhiteSpace(fileCreated))
                     Console.WriteLine($"File created: {fileCreated}");
             }
@@ -224,13 +221,35 @@ namespace PdfToXls
                     nLine++;
                 }
 
+                var unpaymentMonths = paymentAnalisis(informationLines);
+                if (unpaymentMonths.Count > 0)
+                {
+                    nLine = 0;
+                    ISheet sheetUnpayment = workbook.CreateSheet("Nao Pagos");
+
+                    row = sheetUnpayment.CreateRow(nLine);
+                    cell = row.CreateCell(0);
+                    cell.SetCellValue("Meses que não houve pagamento");
+                    cell.CellStyle = styleHeader;
+
+                    sheetUnpayment.SetColumnWidth(0, 60 * 256);
+
+                    foreach (var item in unpaymentMonths)
+                    {
+                        nLine++;
+                        row = sheetUnpayment.CreateRow(nLine);
+                        cell = row.CreateCell(0);
+                        cell.SetCellValue(item);
+                    }
+                }
+
                 workbook.Write(fs);
 
                 return fileXlsxPath;
 
             }
 
-            public static string paymentAnalisis(List<InformationOfLine> informationLines)
+            public static List<string> paymentAnalisis(List<InformationOfLine> informationLines)
             {
                 string yearFirstPayment = string.Empty;
                 string monthFirstPayment = string.Empty;
@@ -343,11 +362,11 @@ namespace PdfToXls
                 }
 
                 //Print the months and if not has payment
-                var result = string.Empty;
+                var result = new List<string>();
                 foreach (var item in months)
                 {
                     if (!item.Value)
-                        result += $"No payment in {item.Key}{Environment.NewLine}";
+                        result.Add(item.Key);
                 }
 
                 return result;
