@@ -118,7 +118,7 @@ namespace PdfToXls
 
                 string fileCreated = string.Empty;
                 if (informationLines.Count > 0)
-                    fileCreated = createXlsxFile(informationLines);
+                    fileCreated = CreateXlsxFile(informationLines);
 
                 if (!string.IsNullOrWhiteSpace(fileCreated))
                     Console.WriteLine($"File created: {fileCreated}");
@@ -156,14 +156,14 @@ namespace PdfToXls
                 return result;
             }
 
-            public static string createXlsxFile(List<InformationOfLine> informationLines)
+            public static string CreateXlsxFile(List<InformationOfLine> informationLines)
             {
                 string fileXlsxPath = Path.Combine(fileDirectory, Guid.NewGuid().ToString() + ".xlsx");
 
                 var fs = File.Create(fileXlsxPath);
 
-                XSSFWorkbook workbook = new XSSFWorkbook();
-                ISheet sheet = workbook.CreateSheet("Extrato");
+                var workbook = new XSSFWorkbook();
+                var sheet = workbook.CreateSheet("Extrato");
 
                 var styleHeader = workbook.CreateCellStyle();
                 styleHeader.FillForegroundColor = HSSFColor.Grey25Percent.Index;
@@ -222,7 +222,7 @@ namespace PdfToXls
                     nLine++;
                 }
 
-                var unpaymentMonths = paymentAnalisis(informationLines);
+                var unpaymentMonths = PaymentAnalisis(informationLines);
                 if (unpaymentMonths.Count > 0)
                 {
                     nLine = 0;
@@ -250,7 +250,7 @@ namespace PdfToXls
 
             }
 
-            public static List<string> paymentAnalisis(List<InformationOfLine> informationLines)
+            public static List<string> PaymentAnalisis(List<InformationOfLine> informationLines)
             {
                 string yearFirstPayment = string.Empty;
                 string monthFirstPayment = string.Empty;
