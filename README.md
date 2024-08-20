@@ -21,11 +21,13 @@ Economiza tempo e esforço manual.
 
 **Como usar:**
 
-Instale o .NET 7.
+Instale o .NET 8.
 
 Baixe e compile o código-fonte C#.
 
 Execute o aplicativo e selecione o arquivo PDF a ser convertido.
+
+Se não quiser compilar, então acesse bin\Release\net8.0\PdfToXls.exe e poderá usar a ultima compilação
 
 
 **Links Úteis:**
