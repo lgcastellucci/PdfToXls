@@ -46,6 +46,8 @@ Novas funcionalidades e melhorias serão adicionadas futuramente.
 Esse projeto foi baseado na leitura do extrato
 ![ImagemExemploDoPdf](ImagemExemploDoPdf.png)
 
+Adicionando a leitura do extrato de vinculos (somente imprimindo na tela)
+![ImagemExemploDoExtratoDeVinculosPdf](ImagemExemploDoExtratoDeVinculosPdf.png)
 
 **Contribuições:**
 
