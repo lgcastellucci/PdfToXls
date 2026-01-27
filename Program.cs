@@ -92,6 +92,9 @@ namespace PdfToXls
                 {
                     foreach (var page in document.GetPages())
                     {
+                        var startInformationRelacoesPrevidenciarias = false;
+                        var numVinculoRelacoesPrevidenciarias = 1;
+
                         var startInformation = false;
                         var text = ContentOrderTextExtractor.GetText(page, true);
                         var lines = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
@@ -105,6 +108,48 @@ namespace PdfToXls
                                     startInformation = true;
                                 else if ((startInformation) && IsDate(line.Substring(0, 10)))
                                     informationLine = SplitInformation(line);
+
+                                if (!startInformation)
+                                    if (line == "Relações Previdenciárias")
+                                        startInformationRelacoesPrevidenciarias = true;
+
+                                if (startInformationRelacoesPrevidenciarias)
+                                {
+                                    var fields = line.Split(' ');
+
+                                    if (fields[0] == numVinculoRelacoesPrevidenciarias.ToString())
+                                    {
+                                        if (fields.Count() >= 6)
+                                        {
+                                            var indice = fields[0];
+                                            var nit = fields[1];
+                                            var codEmpresa = fields[2];
+                                            var nomeEmpresa = fields[3];
+                                            var dataAdmissao = "";
+
+                                            //até que os 10 primeiros digitos do campo sejam uma data valida o nome da empresa ainda não terminou (contem espaços)
+                                            for (int i = 4; i < fields.Count() - 1; i++)
+                                            {
+                                                if (fields[i].Length >= 10)
+                                                {
+                                                    if (IsDate(fields[i].Substring(0, 10)))
+                                                    {
+                                                        dataAdmissao = fields[i].Substring(0, 10);
+                                                        break;
+                                                    }
+                                                }
+                                                nomeEmpresa += " " + fields[i];
+                                            }
+
+
+                                            //aqui temos os conteudos necessarios para depois efetuar qualquer processamento
+                                            Console.WriteLine($"{indice} - {nit} - {codEmpresa} - {nomeEmpresa} - {dataAdmissao} ");
+
+                                        }
+
+                                        numVinculoRelacoesPrevidenciarias += 1;
+                                    }
+                                }
 
                                 if (informationLine.HasValues)
                                     Console.WriteLine($"{informationLine.Date} - {informationLine.Description} - {informationLine.Value} - {informationLine.TotalValue}");
